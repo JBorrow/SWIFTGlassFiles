@@ -35,9 +35,9 @@ def duplicate(input_data: dict) -> dict:
             for z in [1.0, 2.0]:  # lol
                 these_coordinates = input_data["Coordinates"].copy()
 
-                these_coordinates[:, 0] * x
-                these_coordinates[:, 1] * y
-                these_coordinates[:, 2] * z
+                these_coordinates[:, 0] *= x
+                these_coordinates[:, 1] *= y
+                these_coordinates[:, 2] *= z
 
                 output_coordinates.append(these_coordinates)
 
