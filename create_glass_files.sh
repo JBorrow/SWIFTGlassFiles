@@ -11,10 +11,10 @@ do
         for npart in 16 32 64 128
         do
             # Find last snapshot
-            x="$(ls glass_$npart/$kernel/$scheme | egrep -o '00([0-9]+)' | tail -1)"
-            filename=glass_$npart/$kernel/$scheme/uniformBox_$x.hdf5
+            x="$(ls glass_$npart/$kernel/$hydro | egrep -o '00([0-9]+)' | tail -1)"
+            filename=glass_$npart/$kernel/$hydro/uniformBox_$x.hdf5
 
-            cp glass_$npart/$kernel/$scheme/$filename glass_files/$hydro/$kernel/glassCube_$npart.hdf5
+            cp $filename glass_files/$hydro/$kernel/glassCube_$npart.hdf5
         done
     done
 done
