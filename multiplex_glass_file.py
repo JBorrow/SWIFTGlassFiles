@@ -78,8 +78,8 @@ if __name__ == "__main__":
 
     parser.add_argument("-o", "--output", help="Output filename", type=str)
 
-    parser.parse_args()
+    args = parser.parse_args()
 
-    input_data = load_data(parser.input)
+    input_data = load_data(args.input)
     output_data = duplicate(input_data)
-    write_data(parser.output, output_data)
+    write_data(args.output, output_data)
