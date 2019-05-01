@@ -48,7 +48,7 @@ def duplicate(input_data: dict) -> dict:
     output_data["Velocities"] = np.concatenate([input_data["Velocities"]] * 8) * 0.5
 
     output_data["SmoothingLength"] = (
-        np.concatenate([input_data["smoothing_lengths"]] * 8) * 0.5
+        np.concatenate([input_data["SmoothingLength"]] * 8) * 0.5
     )
 
     output_data["Masses"] = np.concatenate([input_data["Masses"]] * 8)
