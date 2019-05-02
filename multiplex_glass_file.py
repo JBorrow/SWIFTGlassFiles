@@ -20,6 +20,11 @@ def load_data(filename):
         )
 
 
+def load_header(filename):
+    with h5py.File(filename, "r") as handle:
+        return dict(handle["Header"].attrs)
+
+
 def duplicate(input_data: dict) -> dict:
     """
     Duplicates the data in an 8x8 cube, and multiplies positions, smoothing lengths,
@@ -58,11 +63,14 @@ def duplicate(input_data: dict) -> dict:
     return output_data
 
 
-def write_data(filename, output_data: dict):
+def write_data(filename, output_data: dict, header_data: dict):
     with h5py.File(filename, "w") as handle:
         grp = handle.create_group("PartType0")
         for key, value in output_data.items():
             grp.create_dataset(key, data=value)
+
+        head = handle.create_group("Header")
+        head.attrs.create("BoxSize", header_data["BoxSize"])
 
     return
 
@@ -81,5 +89,6 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     input_data = load_data(args.input)
+    header_data = load_header(args.input)
     output_data = duplicate(input_data)
-    write_data(args.output, output_data)
+    write_data(args.output, output_data, header_data)
